@@ -6,14 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.TimeZone;
 
 @SpringBootApplication
-public class BookMyShowApplication {
+public class ShowTimeApplication {
 
         public static void main(String[] args) {
             // Force JVM timezone before Spring Boot starts
             System.setProperty("user.timezone", "UTC");
             TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 
-            SpringApplication.run(BookMyShowApplication.class, args);
+            SpringApplication.run(ShowTimeApplication.class, args);
         }
 
 }

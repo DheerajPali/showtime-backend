@@ -2,9 +2,12 @@ package dev.dheeraj.showtime.model;
 
 import dev.dheeraj.showtime.model.constants.UserRole;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
-
+@Getter
+@Setter
 @Entity(name = "BMS_User")
 public class User extends BaseModel{
     private String name;

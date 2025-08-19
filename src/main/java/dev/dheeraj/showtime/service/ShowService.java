@@ -1,18 +1,25 @@
 package dev.dheeraj.showtime.service;
 
 import dev.dheeraj.showtime.exception.ShowNotFoundException;
+import dev.dheeraj.showtime.model.Seat;
 import dev.dheeraj.showtime.model.Show;
+import dev.dheeraj.showtime.model.ShowSeat;
+import dev.dheeraj.showtime.model.constants.ShowSeatStatus;
 import dev.dheeraj.showtime.repository.ShowRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor // generates constructor for final fields
 public class ShowService {
-
-    private final ShowRepository showRepository;
+    @Autowired
+    private ShowRepository showRepository;
+    @Autowired
+    private ShowSeatService showSeatService;
 
     public Show getShowById(int id) {
         return showRepository.findById(id).orElseThrow(
@@ -25,7 +32,22 @@ public class ShowService {
     }
 
     public Show saveShow(Show show) {
-        return showRepository.save(show);
+        //create the showSeats for the show
+        List<ShowSeat> showSeats = new ArrayList<>();
+        show = showRepository.save(show);
+
+        List<Seat> seats = show.getAuditorium().getSeats();
+        for (Seat seat : seats) {
+            ShowSeat showSeat = new ShowSeat();
+            showSeat.setSeat(seat);
+            showSeat.setPrice(100);
+            showSeat.setShow(show);
+            showSeat.setShowSeatStatus(ShowSeatStatus.AVAILABLE);
+            showSeat = showSeatService.saveShowSeat(showSeat);
+            showSeats.add(showSeat);
+        }
+        show.setShowSeats(showSeats);
+        return show;
     }
 
     public void deleteShowById(int id) {

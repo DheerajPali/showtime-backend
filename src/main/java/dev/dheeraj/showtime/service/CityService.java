@@ -2,6 +2,7 @@ package dev.dheeraj.showtime.service;
 
 import dev.dheeraj.showtime.exception.CityNotFoundException;
 import dev.dheeraj.showtime.model.City;
+import dev.dheeraj.showtime.model.Show;
 import dev.dheeraj.showtime.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,9 +43,17 @@ public class CityService {
         cityRepository.deleteById(id);
     }
 
-//    public City update(int id){
-//        return cityRepository
-//    }
+    public City updateCity(int id, City updatedCity) {
+        City existingCity = cityRepository.findById(id)
+                .orElseThrow(() -> new CityNotFoundException("Show not found with id: " + id));
+
+        // Example: updating fields manually (you decide which ones to allow)
+        existingCity.setName(updatedCity.getName());
+        existingCity.setTheatres(updatedCity.getTheatres());
+        existingCity.setUpdatedAt(updatedCity.getCreatedAt());
+
+        return cityRepository.save(existingCity);
+    }
 
 }
 

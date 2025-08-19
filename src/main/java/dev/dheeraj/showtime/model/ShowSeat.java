@@ -4,7 +4,11 @@ import dev.dheeraj.showtime.model.constants.ShowSeatStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class ShowSeat extends BaseModel{
     private int price;

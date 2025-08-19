@@ -40,10 +40,8 @@ public class CityController {
         return ResponseEntity.noContent().build();
     }
 
-//    public ResponseEntity<City> updateCity(@PathVariable int id,  @RequestBody City city){
-//        City curCity = cityService.getCityById(id);
-//        if(curCity != null){
-//            cityService.update
-//        }
-//    }
+    @PutMapping("cities/{id}")
+    public ResponseEntity<City> updateCity(@PathVariable int id,  @RequestBody City city){
+      return ResponseEntity.ok(cityService.updateCity(id, city));
+    }
 }
