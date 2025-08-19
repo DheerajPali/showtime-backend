@@ -4,6 +4,7 @@ import dev.dheeraj.showtime.exception.PaymentNotFoundException;
 import dev.dheeraj.showtime.model.Payment;
 import dev.dheeraj.showtime.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
-    private final PaymentRepository paymentRepository;
+    @Autowired
+    private  PaymentRepository paymentRepository;
 
     public Payment getPaymentById(int id) {
         return paymentRepository.findById(id).orElseThrow(
@@ -23,7 +25,7 @@ public class PaymentService {
         return paymentRepository.findAll();
     }
 
-    public Payment savePayment(Payment payment) {
+    public Payment createPayment(Payment payment) {
         return paymentRepository.save(payment);
     }
 

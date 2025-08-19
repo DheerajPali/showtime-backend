@@ -4,6 +4,7 @@ import dev.dheeraj.showtime.exception.ShowSeatNotFoundException;
 import dev.dheeraj.showtime.model.ShowSeat;
 import dev.dheeraj.showtime.repository.ShowSeatRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ShowSeatService {
-    private final ShowSeatRepository showSeatRepository;
+    @Autowired
+    private ShowSeatRepository showSeatRepository;
 
     public ShowSeat getShowSeatById(int id) {
         return showSeatRepository.findById(id).orElseThrow(
@@ -23,7 +25,7 @@ public class ShowSeatService {
         return showSeatRepository.findAll();
     }
 
-    public ShowSeat saveShowSeat(ShowSeat showSeat) {
+    public ShowSeat createShowSeat(ShowSeat showSeat) {
         return showSeatRepository.save(showSeat);
     }
 
@@ -32,5 +34,9 @@ public class ShowSeatService {
             throw new ShowSeatNotFoundException("ShowSeat not found with id " + id + ". It may have already been deleted.");
         }
         showSeatRepository.deleteById(id);
+    }
+
+    public ShowSeat updateShowSeat(ShowSeat showSeat){
+        return showSeatRepository.save(showSeat);
     }
 }

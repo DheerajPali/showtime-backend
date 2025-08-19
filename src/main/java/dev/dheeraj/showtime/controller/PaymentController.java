@@ -28,7 +28,7 @@ public class PaymentController {
 
     @PostMapping
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
-        Payment savedPayment = paymentService.savePayment(payment);
+        Payment savedPayment = paymentService.createPayment(payment);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPayment);
     }
 

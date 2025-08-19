@@ -86,33 +86,24 @@ public class TicketService {
         return showSeats;
     }
 
+    public Ticket getTicketById(int id) {
+        return ticketRepository.findById(id).orElseThrow(
+                () -> new TicketNotFoundException("Ticket not found, please provide a valid ticket id")
+        );
+    }
 
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
+    }
 
+    public Ticket createTicket(Ticket ticket) {
+        return ticketRepository.save(ticket);
+    }
 
-
-
-
-
-
-
-//    public Ticket getTicketById(int id) {
-//        return ticketRepository.findById(id).orElseThrow(
-//                () -> new TicketNotFoundException("Ticket not found, please provide a valid ticket id")
-//        );
-//    }
-//
-//    public List<Ticket> getAllTickets() {
-//        return ticketRepository.findAll();
-//    }
-//
-//    public Ticket createTicket(Ticket ticket) {
-//        return ticketRepository.save(ticket);
-//    }
-//
-//    public void deleteTicketById(int id) {
-//        if (!ticketRepository.existsById(id)) {
-//            throw new TicketNotFoundException("Ticket not found with id " + id + ". It may have already been deleted.");
-//        }
-//        ticketRepository.deleteById(id);
-//    }
+    public void deleteTicketById(int id) {
+        if (!ticketRepository.existsById(id)) {
+            throw new TicketNotFoundException("Ticket not found with id " + id + ". It may have already been deleted.");
+        }
+        ticketRepository.deleteById(id);
+    }
 }

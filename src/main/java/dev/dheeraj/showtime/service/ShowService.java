@@ -31,7 +31,7 @@ public class ShowService {
         return showRepository.findAll();
     }
 
-    public Show saveShow(Show show) {
+    public Show createShow(Show show) {
         //create the showSeats for the show
         List<ShowSeat> showSeats = new ArrayList<>();
         show = showRepository.save(show);
@@ -43,7 +43,7 @@ public class ShowService {
             showSeat.setPrice(100);
             showSeat.setShow(show);
             showSeat.setShowSeatStatus(ShowSeatStatus.AVAILABLE);
-            showSeat = showSeatService.saveShowSeat(showSeat);
+            showSeat = showSeatService.createShowSeat(showSeat);
             showSeats.add(showSeat);
         }
         show.setShowSeats(showSeats);

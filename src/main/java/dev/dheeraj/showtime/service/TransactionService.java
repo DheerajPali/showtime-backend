@@ -4,6 +4,7 @@ import dev.dheeraj.showtime.exception.TransactionNotFoundException;
 import dev.dheeraj.showtime.model.Transaction;
 import dev.dheeraj.showtime.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
-    private final TransactionRepository transactionRepository;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     public Transaction getTransactionById(int id) {
         return transactionRepository.findById(id).orElseThrow(
@@ -23,7 +25,7 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public Transaction saveTransaction(Transaction transaction) {
+    public Transaction createTransaction(Transaction transaction) {
         return transactionRepository.save(transaction);
     }
 

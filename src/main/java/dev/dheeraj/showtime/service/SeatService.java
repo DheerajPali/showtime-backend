@@ -4,6 +4,7 @@ import dev.dheeraj.showtime.exception.SeatNotFoundException;
 import dev.dheeraj.showtime.model.Seat;
 import dev.dheeraj.showtime.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SeatService {
-    private final SeatRepository seatRepository;
+    @Autowired
+    private SeatRepository seatRepository;
 
     public Seat getSeatById(int id) {
         return seatRepository.findById(id).orElseThrow(
@@ -23,7 +25,7 @@ public class SeatService {
         return seatRepository.findAll();
     }
 
-    public Seat saveSeat(Seat seat) {
+    public Seat createSeat(Seat seat) {
         return seatRepository.save(seat);
     }
 

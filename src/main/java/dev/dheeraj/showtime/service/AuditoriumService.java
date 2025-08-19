@@ -4,6 +4,7 @@ import dev.dheeraj.showtime.exception.AuditoriumNotFoundException;
 import dev.dheeraj.showtime.model.Auditorium;
 import dev.dheeraj.showtime.repository.AuditoriumRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuditoriumService {
 
-    private final AuditoriumRepository auditoriumRepository;
+    @Autowired
+    private AuditoriumRepository auditoriumRepository;
 
     public Auditorium getAuditoriumById(int id) {
         return auditoriumRepository.findById(id).orElseThrow(
@@ -24,7 +26,7 @@ public class AuditoriumService {
         return auditoriumRepository.findAll();
     }
 
-    public Auditorium saveAuditorium(Auditorium auditorium) {
+    public Auditorium createAuditorium(Auditorium auditorium) {
         return auditoriumRepository.save(auditorium);
     }
 

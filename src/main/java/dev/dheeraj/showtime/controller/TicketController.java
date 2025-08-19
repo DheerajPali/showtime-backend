@@ -1,5 +1,6 @@
 package dev.dheeraj.showtime.controller;
 
+import dev.dheeraj.showtime.model.ShowSeat;
 import dev.dheeraj.showtime.model.Ticket;
 import dev.dheeraj.showtime.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
-        Ticket savedTicket = ticketService.saveTicket(ticket);
+    public ResponseEntity<Ticket> createTicket(@PathVariable int userId, List<Integer> showSeatIds) {
+        Ticket savedTicket = ticketService.createTicket(userId, showSeatIds);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTicket);
     }
 

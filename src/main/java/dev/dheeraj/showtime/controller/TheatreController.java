@@ -28,7 +28,7 @@ public class TheatreController {
 
     @PostMapping
     public ResponseEntity<Theatre> createTheater(@RequestBody Theatre theater) {
-        Theatre savedTheater = theaterService.saveTheatre(theater);
+        Theatre savedTheater = theaterService.createTheatre(theater);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTheater);
     }
 

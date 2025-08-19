@@ -28,7 +28,7 @@ public class SeatController {
 
     @PostMapping
     public ResponseEntity<Seat> createSeat(@RequestBody Seat seat) {
-        Seat savedSeat = seatService.saveSeat(seat);
+        Seat savedSeat = seatService.createSeat(seat);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedSeat);
     }
 

@@ -4,6 +4,7 @@ import dev.dheeraj.showtime.exception.TheatreNotFoundException;
 import dev.dheeraj.showtime.model.Theatre;
 import dev.dheeraj.showtime.repository.TheatreRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TheatreService {
-    private final TheatreRepository theatreRepository;
+    @Autowired
+    private TheatreRepository theatreRepository;
 
     public Theatre getTheatreById(int id) {
         return theatreRepository.findById(id).orElseThrow(
@@ -23,7 +25,7 @@ public class TheatreService {
         return theatreRepository.findAll();
     }
 
-    public Theatre saveTheatre(Theatre theatre) {
+    public Theatre createTheatre(Theatre theatre) {
         return theatreRepository.save(theatre);
     }
 

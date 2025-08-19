@@ -28,7 +28,7 @@ public class ShowSeatController {
 
     @PostMapping
     public ResponseEntity<ShowSeat> createShowSeat(@RequestBody ShowSeat showSeat) {
-        ShowSeat savedShowSeat = showSeatService.saveShowSeat(showSeat);
+        ShowSeat savedShowSeat = showSeatService.createShowSeat(showSeat);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedShowSeat);
     }
 

@@ -28,7 +28,7 @@ public class AuditoriumController {
 
     @PostMapping
     public ResponseEntity<Auditorium> createAuditorium(@RequestBody Auditorium auditorium) {
-        Auditorium savedAuditorium = auditoriumService.saveAuditorium(auditorium);
+        Auditorium savedAuditorium = auditoriumService.createAuditorium(auditorium);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAuditorium);
     }
 

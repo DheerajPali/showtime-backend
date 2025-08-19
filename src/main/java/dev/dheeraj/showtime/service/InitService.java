@@ -4,7 +4,6 @@ import dev.dheeraj.showtime.model.*;
 import dev.dheeraj.showtime.model.constants.SeatStatus;
 import dev.dheeraj.showtime.model.constants.SeatType;
 import dev.dheeraj.showtime.model.constants.ShowStatus;
-import dev.dheeraj.showtime.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +37,7 @@ public class InitService {
             seat.setCol(i); // just an assumption to create data
             seat.setSeatStatus(SeatStatus.AVAILABLE);
             seat.setSeatType(SeatType.GOLD);
-            seat = seatService.saveSeat(seat);
+            seat = seatService.createSeat(seat);
             seats.add(seat);
         }
 
@@ -47,14 +46,14 @@ public class InitService {
         auditorium.setName("AUDI 01");
         auditorium.setCapacity(100);
         auditorium.setSeats(seats);
-        auditorium = auditoriumService.saveAuditorium(auditorium);
+        auditorium = auditoriumService.createAuditorium(auditorium);
 
         //create theatre
         Theatre theatre = new Theatre();
         theatre.setName("PVR INOX CINEPOLIS");
         theatre.setAddress("Road 1, City 2, Bangalore - 1234456");
         theatre.setAuditoriums(List.of(auditorium));
-        theatre = theatreService.saveTheatre(theatre);
+        theatre = theatreService.createTheatre(theatre);
 
         //create city
         City city = new City();
@@ -66,7 +65,7 @@ public class InitService {
         Movie movie = new Movie();
         movie.setTitle("MISSILE MAN ABDUL KALAM");
         movie.setLanguage("Hindi");
-        movie = movieService.saveMovie(movie);
+        movie = movieService.createMovie(movie);
 
         //create show
         Show show = new Show();
@@ -76,7 +75,7 @@ public class InitService {
         show.setShowStatus(ShowStatus.YET_TO_START);
         show.setStartTime(LocalDateTime.now()); // just an assumption to create data
         show.setEndTime(LocalDateTime.now());  // just an assumption to create data
-        show = showService.saveShow(show);
+        show = showService.createShow(show);
     }
 }
 
