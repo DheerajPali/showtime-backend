@@ -1,6 +1,6 @@
 package dev.dheeraj.bookmyshow.repository;
 
-import dev.dheeraj.showtime.model.ShowSeat;
+import dev.dheeraj.bookmyshow.model.ShowSeat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

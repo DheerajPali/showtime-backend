@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dev.dheeraj</groupId>
-    <artifactId>BookMyShow</artifactId>
+    <artifactId>ShowTime</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>BookMyShow</name>
     <description>BookMyShow</description>

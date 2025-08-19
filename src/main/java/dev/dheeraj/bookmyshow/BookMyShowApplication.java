@@ -1,4 +1,4 @@
-package dev.dheeraj.bookmyshow;
+package dev.dheeraj.showtime;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
